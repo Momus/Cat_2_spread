@@ -93,9 +93,6 @@ def initialize(file_csv)
   end
   
 
- #  pp  row_hash
-
-
 
 
 
@@ -116,15 +113,27 @@ def initialize(file_csv)
     end
 
   end
- 
 
  @result_array[0] = first_row[target_column_index]
 
-pp first_row, first_row.class
 
-  #Read each line, extracing each element, and placing it into hash
+  #Now  we can suck the second row into the result
+
+  first_row.each_with_index do |c, i|
+    row_hash[c] = second_row[i]
+  end
+
+
+  @result_array[1] = row_hash
+  #pp "ROW HASH" ,  row_hash
+  
+  #Read each remaining line; 
+  #REMEBER: we already proccessed the first two rows!!!
+  # extract each element, and placing it into hash
   #indexed by header column
 
+
+   pp reader.inspect
 
 
 
