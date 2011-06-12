@@ -11,3 +11,5 @@
 # Ruby License.
 
 load "./input_sheet.rb"
+
+test
