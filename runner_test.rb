@@ -21,3 +21,5 @@ end
 read_sheet= Input_Sheet.new(@file_one)
 
 pp "Read Sheet" , read_sheet.result_array
+pp "Read Sheet size" , read_sheet.result_array.size
+
