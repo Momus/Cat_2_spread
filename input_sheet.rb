@@ -8,7 +8,7 @@ require 'pp'
 
 class Input_Sheet
   
-  attr_accessor :result_array
+  attr_accessor :result_array , :header_array
   
   
   def initialize(file_csv)
@@ -25,7 +25,7 @@ class Input_Sheet
     @result_array = Array.new
     
     row_hash = Hash.new
-    header_array = Array.new
+    @header_array = Array.new
     
     #This will hold the column number of the key value
     target_column_index = nil  #Becomes int at runtime
@@ -87,7 +87,7 @@ class Input_Sheet
     end
     
     first_row.each do |column, i|
-      header_array  <<  column.to_s
+      @header_array  <<  column.to_s
       
     end
     
@@ -130,7 +130,7 @@ class Input_Sheet
       this_hash = {}
       
       row.each_with_index do  |cell , i|
-        this_hash[header_array[i]] = cell
+        this_hash[@header_array[i]] = cell
       end
       
        unless this_hash.empty? 

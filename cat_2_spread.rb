@@ -13,40 +13,47 @@
 load "./input_sheet.rb"
 
 
-#Intially, let's stick to working with just two sheets at a
+#Initially, let's stick to working with just two sheets at a
 #time.
 
 #test command line to make sure we have them:
 
 if  ARGV[1] == nil
-  puts "Remeber to supply TWO files"
-  break
+  puts "Remember to supply TWO files"
+  exit
 end
 
-
+#See Input Sheet class def. for object specifications.
+# TODO: Write object specs for Input Sheet class.
 sheet1 =   Input_Sheet.new(ARGV[0])
 
-
+pp sheet1
 
 sheet2 =   Input_Sheet.new(ARGV[1])
 
 
-
+pp sheet2
 
 #Get the "keys" that return the correct hash values from the results array
 key1 = sheet1.result_array[0]
 key2 = sheet2.result_array[0]
 
+#For each sheet, this is how individual target values (in the present
+#case, IP addresses, can be found:
 
-#pp "keyed result",sheet1.result_array[1][key1] ,
-#sheet2.result_array[1][key2]
+#print sheet1.result_array[1][key1]    Returns: "10.14.160.78"
+#print  sheet2.result_array[1][key2]   Returns: "129.39.231.134"
 
 
-comp_array1 = []
 
-#The first line is the header, so we start at 1 not 0
+#Pull in all the values of the key into an array for comparison.
+
+#The first array element is the key, so start at 1 not 0.  The other
+#elements in the array are hashes, so use the first element (the key)
+#to pull the appropriate value out of them.
 n =1
 size_sheet1 = sheet1.result_array.size
+comp_array1 = []
 
 while n < size_sheet1
   
@@ -60,7 +67,7 @@ while n < size_sheet1
 
 end
 
-#(hopefully temporarily) violate DRY for simplisity.
+#(hopefully temporarily) violate DRY for expediency.
 
 m = 1
 size_sheet2 = sheet2.result_array.size
@@ -71,13 +78,32 @@ while m < size_sheet2
   
   unless sheet2.result_array[m][key2] == nil
     
-    comp_array2  << sheet1.result_array[m][key2]
+    comp_array2  << sheet2.result_array[m][key2]
   end
   
   m += 1
   
 end
 
+comp_array1.each do |val|
+  puts comp_array2.include?(val).to_s + " " + val
+end
 
-pp  "ONE" , comp_array1.inspect 
-pp "TWO" , comp_array2.inspect
+pp  "ONE" , comp_array1
+pp "TWO" , comp_array2
+
+
+# comp_array1.each_with_index do |val , idx|
+#   if comp_array2.include?(val)
+#     p "It's here"
+#     pp val
+#     pp comp_array1.index(val)
+#     pp comp_array2.index(val)
+#   else
+#     p "It's not"
+#     pp val
+#     pp comp_array1.index(val)
+#     pp comp_array2.index(val)
+   
+#   end
+# end
