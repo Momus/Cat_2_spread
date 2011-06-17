@@ -13,12 +13,7 @@ class Input_Sheet
   
   def initialize(file_csv)
     
-<<<<<<< HEAD
     # Input: CSV file, stripped of PATH info 
-=======
-    # Input: CSV file 
-
->>>>>>> functionalize
     @working_file = File::basename(file_csv)
     
     # Output: array of arrays.  first element of array contains the
