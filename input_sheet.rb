@@ -8,12 +8,13 @@ require 'pp'
 
 class Input_Sheet
   
-  attr_accessor :result_array , :header_array
+  attr_accessor :result_array , :header_array , :working_file
   
   
   def initialize(file_csv)
     
-    # Input: CSV file 
+    # Input: CSV file, stripped of PATH info 
+    @working_file = File::basename(file_csv)
     
     # Output: array of arrays.  first element of array contains the
     # index key, the other elements contain hashes corresponding to each
@@ -91,7 +92,7 @@ class Input_Sheet
       
     end
     
-    
+pp     first_row
     
     #Now find the key_target in the second row, and store its index
     
