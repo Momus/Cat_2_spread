@@ -140,6 +140,7 @@
 
  #=begin
  writer = CSV.open('./results/diff_1-2.csv', 'w')
+pp "writing output"
  diff_1_2.each do |line|
    unless line == nil #Don't print blank lines.
      writer << line
